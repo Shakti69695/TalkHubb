@@ -7,8 +7,17 @@ const MBody = () => {
   const sendUser = useSelector((store) => store.selectedUser);
   const auth = useSelector((store) => store.user);
   const messageTrigger = useSelector((store) => store.message.messageTrigger);
+  const socket = useSelector((store) => store.socket.socket);
 
   const [messageData, setMessageData] = useState([]);
+
+  const subscribeToMsg = () => {
+    if (!sendUser) return;
+
+    socket.on("newMessage", (newMessage) => {
+      setMessageData((prevMes) => [...prevMes, newMessage]);
+    });
+  };
 
   useEffect(() => {
     const getMessage = async () => {
@@ -30,21 +39,7 @@ const MBody = () => {
       }
     };
     getMessage();
-  }, [sendUser, messageTrigger]);
-
-  // if ((sendUser != null)&&(messageData.length === 0))
-  //   return (
-  //     <div>
-  //       <div
-  //         className="w-full bg-blue-950 overflow-auto"
-  //         style={{ height: "26rem" }}
-  //       >
-  //         {" "}
-  //         Start chatting
-  //       </div>
-  //       <MInput/>
-  //     </div>
-  //   );
+  }, [sendUser, messageTrigger, subscribeToMsg]);
 
   return (
     <div className="relative">

@@ -1,6 +1,7 @@
 const express = require("express");
 const { userLogin } = require("../middlewares/userAuth");
 const Messages = require("../model/Messages");
+const { getReceiverSocketId, io } = require("../middlewares/socket");
 const messageRouter = express.Router();
 
 messageRouter.post("/sendMessage/:id", userLogin, async (req, res) => {
@@ -9,13 +10,19 @@ messageRouter.post("/sendMessage/:id", userLogin, async (req, res) => {
   const { text, image } = req.body;
 
   try {
-    const message = await new Messages({
+    const message = new Messages({
       senderId,
       receiverId,
       text,
       image,
     });
     await message.save();
+
+    const receiverSocketId = getReceiverSocketId(receiverId);
+    if (receiverSocketId) {
+      io.to(receiverSocketId).emit("newMessage", message);
+    }
+
     res.send("Message send successfully");
   } catch (error) {
     res.status(400).send("Error " + error.message);

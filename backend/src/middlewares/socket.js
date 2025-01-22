@@ -11,13 +11,17 @@ const io = new Server(server, {
     credentials: true,
   },
 });
+
+function getReceiverSocketId(userId) {
+  return userSocketMap[userId];
+}
+
 const userSocketMap = {};
 io.on("connection", (socket) => {
   console.log("A user connected", socket.id);
 
-  const userId = socket.handshake.query.userId;
-  console.log(userId);
-  
+  const userId = socket.handshake.query.userID;
+
   if (userId) userSocketMap[userId] = socket.id;
 
   socket.on("disconnect", () => {
@@ -25,4 +29,4 @@ io.on("connection", (socket) => {
   });
 });
 
-module.exports = { io, app, server };
+module.exports = { io, app, server, getReceiverSocketId };
