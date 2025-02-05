@@ -1,5 +1,5 @@
 import "./App.css";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import { Provider } from "react-redux";
 import Login from "./pages/login";
 import SignUp from "./pages/SignUp";
@@ -16,6 +16,7 @@ const App = () => {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/home" element={<Home />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="*" element={<Navigate to="/login" />} />
         </Routes>
       </Provider>
     </div>

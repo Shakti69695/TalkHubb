@@ -23,12 +23,13 @@ const MInput = () => {
   };
 
   return (
-    <div className="fixed bottom-0  flex items-center" style={{width:"900px"}}>
+    <div className="fixed bottom-0  flex items-center" >
       <input
         type="text"
         placeholder="Type here"
         className="flex-1 input input-bordered p-2 m-2 rounded-lg text-sm sm:text-base"
         value={text}
+        style={{width:"850px"}}
         onChange={(e) => setText(e.target.value)}
         disabled={!sendUser}
       />

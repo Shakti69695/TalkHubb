@@ -26,9 +26,9 @@ const Sidebar = () => {
   }
 
   return (
-    <div className="w-56">
+    <div className="w-14 md:w-48 sm:w-52">
       <ul
-        className=" bg-base-200 rounded-box w-52 overflow-y-auto "
+        className=" bg-base-200 rounded-box w-14 md:w-48 sm:w-52 overflow-y-auto h-screen"
         style={{ height: "525px" }}
       >
         <li className="menu-title">Contacts</li>
@@ -39,7 +39,7 @@ const Sidebar = () => {
             onClick={() => {
               handleMessage(user);
             }}
-            className="flex items-center flex-row my-3 hover:bg-slate-800 w-52"
+            className="flex items-center flex-row my-3 hover:bg-slate-800 w-40 md:w-48 sm:w-52"
           >
             <div className="chat-image avatar w-10 rounded-full">
               <img
@@ -48,7 +48,7 @@ const Sidebar = () => {
                 src={user.photoUrl}
               />
             </div>
-            <li className="p-0 m-1">{user.name}</li>
+            <li className="p-0 m-1 hidden sm:block">{user.name}</li>
           </button>
         ))}
       </ul>

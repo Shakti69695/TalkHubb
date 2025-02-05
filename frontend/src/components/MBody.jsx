@@ -44,8 +44,8 @@ const MBody = () => {
   return (
     <div className="relative">
       <div
-        className="w-full bg-blue-950 overflow-auto"
-        style={{ height: "26rem" }}
+        className="w-full  overflow-scroll h-96 "
+        // style={{ height: "450px" }}
       >
         {messageData.map((mes) => (
           <div

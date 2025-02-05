@@ -35,7 +35,7 @@ const Home = () => {
   return (
     <>
       <Header />
-      <div className="flex gap-10 px-4 h-96">
+      <div className="flex gap-10 px-4 h-5/6">
         <Sidebar />
         {!selectUser ? <NoChatSelected /> : <MessageBox />}
       </div>
