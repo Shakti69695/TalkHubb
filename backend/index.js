@@ -34,10 +34,12 @@ app.use("/", (req, res) => {
 connectDB()
   .then(() => {
     console.log("dB connected");
-    server.listen(PORT, () => {
-      console.log("server started");
-    });
+    // server.listen(PORT, () => {
+    //   console.log("server started");
+    // });
   })
   .catch((err) => {
     console.log("error in db");
   });
+
+  module.exports= app;
