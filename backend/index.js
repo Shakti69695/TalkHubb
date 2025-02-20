@@ -19,7 +19,18 @@ app.use(
     origin: FRONTEND_URL, // Add the specific URL of your frontend
     credentials: true, // Allow credentials (cookies) to be sent
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"], // Allowed methods
-    allowedHeaders: ["Content-Type", "Authorization"], // Allowed headers
+    allowedHeaders: [
+      "Content-Type", 
+      "Authorization", 
+      "Cache-Control", 
+      "X-Requested-With", 
+      "Accept", 
+      "Accept-Version", 
+      "Content-Length", 
+      "Content-MD5", 
+      "Date", 
+      "X-Api-Version"
+    ],
   })
 );
 
