@@ -14,9 +14,11 @@ const { app, server } = require("./src/middlewares/socket");
 app.use(
   cors({
     origin: "https://talk-hubb-hivu.vercel.app",
+    headers:["Content-Type"],
     credentials: true,
   })
 );
+app.options('*',cors())
 app.use(cookieParser());
 app.use(express.json());
 
