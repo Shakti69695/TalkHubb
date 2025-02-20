@@ -5,7 +5,7 @@ require("dotenv").config();
 import cookieParser from "cookie-parser";
 const PORT = process.env.PORT;
 const FRONTEND_URL = process.env.FRONTEND_URL;
-import connectDB from "./src/config/database";
+import connectDB from "./src/config/database.js";
 import { authRouter } from "./src/routes/auth";
 import { userRouter } from "./src/routes/user";
 import { messageRouter } from "./src/routes/message";
