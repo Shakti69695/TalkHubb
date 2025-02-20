@@ -46,7 +46,7 @@ connectDB()
   .then(() => {
     console.log("dB connected");
     server.listen(PORT, () => {
-      console.log("server started");
+      console.log(`Server started on port ${PORT}`);
     });
   })
   .catch((err) => {
