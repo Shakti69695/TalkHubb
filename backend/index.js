@@ -4,7 +4,6 @@ const cors = require("cors");
 require("dotenv").config();
 const cookieParser = require("cookie-parser");
 const PORT = process.env.PORT;
-const FRONTEND_URL = process.env.FRONTEND_URL;
 const connectDB = require("./src/config/database");
 const { authRouter } = require("./src/routes/auth");
 const { userRouter } = require("./src/routes/user");
@@ -13,12 +12,12 @@ const { app, server } = require("./src/middlewares/socket");
 
 app.use(
   cors({
-    origin: "https://talk-hubb-hivu.vercel.app",
-    headers:["Content-Type"],
+    origin: process.env.FRONTEND_URL,
+    allowedHeaders: ["Content-Type"],
     credentials: true,
   })
 );
-app.options('*',cors())
+app.options("*", cors());
 app.use(cookieParser());
 app.use(express.json());
 
