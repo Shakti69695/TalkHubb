@@ -25,7 +25,7 @@ const useLogin = () => {
 
   const login = async (email, password) => {
     try {
-      const res = await fetch(`${import.meta.env.VITE_APP_BASE_URL}/login`, {
+      const res = await fetch(`http://localhost:8000/login`, {
         method: "POST",
         headers: { "Content-type": "application/json" },
         credentials: "include",
