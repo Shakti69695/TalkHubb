@@ -4,7 +4,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 dotenv.config();
 import cookieParser from "cookie-parser";
-const PORT = process.env.PORT;
+const PORT = process.env.PORT|| 3000;
 const FRONTEND_URL = process.env.FRONTEND_URL;
 import connectDB from "./src/config/database.js";
 import { authRouter } from "./src/routes/auth.js";
@@ -45,9 +45,9 @@ if (process.env.NODE_ENV === "production") {
 connectDB()
   .then(() => {
     console.log("dB connected");
-    server.listen(PORT, () => {
-      console.log("server started");
-    });
+    // server.listen(PORT, () => {
+    //   console.log("server started");
+    // });
   })
   .catch((err) => {
     console.log("error in db");
