@@ -1,7 +1,7 @@
 import "./App.css";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { Provider } from "react-redux";
-import Login from "./pages/login";
+import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import Home from "./pages/Home";
 import appStore from "./utils/appStore";
