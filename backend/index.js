@@ -45,9 +45,9 @@ if (process.env.NODE_ENV === "production") {
 connectDB()
   .then(() => {
     console.log("dB connected");
-    // server.listen(PORT, () => {
-    //   console.log("server started");
-    // });
+    server.listen(PORT, () => {
+      console.log("server started");
+    });
   })
   .catch((err) => {
     console.log("error in db");

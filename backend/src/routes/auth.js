@@ -1,7 +1,8 @@
-const express = require("express");
-const User = require("../model/User");
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
+import express from "express";
+import User from "../model/User.js";
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
+
 const authRouter = express.Router();
 
 authRouter.post("/signup", async (req, res) => {
@@ -9,17 +10,17 @@ authRouter.post("/signup", async (req, res) => {
   try {
     const checkUser = await User.findOne({ email: email });
     if (checkUser) {
-      throw new Error("user already exist");
+      throw new Error("user already exists");
     } else {
       const hashedPass = await bcrypt.hash(password, 10);
 
-      const user = await new User({
+      const user = new User({
         name,
         email,
         password: hashedPass,
       });
       await user.save();
-      res.send("user created successfuly");
+      res.send("user created successfully");
     }
   } catch (error) {
     res.status(400).send("Error in SignUp " + error.message);
@@ -35,15 +36,14 @@ authRouter.post("/login", async (req, res) => {
     } else {
       const check = await bcrypt.compare(password, isUser.password);
       if (check) {
-        const token = jwt.sign({ _id:isUser._id }, process.env.KEY, {
+        const token = jwt.sign({ _id: isUser._id }, process.env.KEY, {
           expiresIn: "1h",
         });
-        
         
         res.cookie("token", token);
         res.send(isUser);
       } else {
-        throw new Error("invalid email or  password");
+        throw new Error("invalid email or password");
       }
     }
   } catch (error) {
@@ -53,7 +53,7 @@ authRouter.post("/login", async (req, res) => {
 
 authRouter.post("/logout", (req, res) => {
   res.cookie("token", null, { expires: new Date(Date.now()) });
-  res.send("logged out")
+  res.send("logged out");
 });
 
-module.exports = { authRouter };
+export { authRouter };

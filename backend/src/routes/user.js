@@ -1,6 +1,7 @@
-const express = require("express");
-const { userLogin } = require("../middlewares/userAuth");
-const User = require("../model/User");
+import express from "express";
+import { userLogin } from "../middlewares/userAuth.js";
+import User from "../model/User.js";
+
 const userRouter = express.Router();
 
 userRouter.get("/users", userLogin, async (req, res) => {
@@ -41,4 +42,4 @@ userRouter.patch("/update", userLogin, async (req, res) => {
   }
 });
 
-module.exports = { userRouter };
+export { userRouter };

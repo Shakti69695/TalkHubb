@@ -1,7 +1,8 @@
-const express = require("express");
-const { userLogin } = require("../middlewares/userAuth");
-const Messages = require("../model/Messages");
-const { getReceiverSocketId, io } = require("../middlewares/socket");
+import express from "express";
+import { userLogin } from "../middlewares/userAuth.js";
+import Messages from "../model/Messages.js";
+import { getReceiverSocketId, io } from "../middlewares/socket.js";
+
 const messageRouter = express.Router();
 
 messageRouter.post("/sendMessage/:id", userLogin, async (req, res) => {
@@ -23,7 +24,7 @@ messageRouter.post("/sendMessage/:id", userLogin, async (req, res) => {
       io.to(receiverSocketId).emit("newMessage", message);
     }
 
-    res.send("Message send successfully");
+    res.send("Message sent successfully");
   } catch (error) {
     res.status(400).send("Error " + error.message);
   }
@@ -45,4 +46,4 @@ messageRouter.get("/getMessage/:id", userLogin, async (req, res) => {
   }
 });
 
-module.exports = { messageRouter };
+export { messageRouter };
