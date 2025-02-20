@@ -13,7 +13,7 @@ const { app, server } = require("./src/middlewares/socket");
 
 app.use(
   cors({
-    origin: FRONTEND_URL,
+    origin: "https://talk-hubb-hivu.vercel.app",
     credentials: true,
   })
 );
