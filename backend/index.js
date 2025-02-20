@@ -1,7 +1,8 @@
 import express from "express";
 import { resolve, join } from "node:path";
 import cors from "cors";
-require("dotenv").config();
+import dotenv from "dotenv";
+dotenv.config();
 import cookieParser from "cookie-parser";
 const PORT = process.env.PORT;
 const FRONTEND_URL = process.env.FRONTEND_URL;
