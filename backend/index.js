@@ -1,17 +1,17 @@
-const express = require("express");
-const path = require("node:path");
-const cors = require("cors");
+import express from "express";
+import { resolve, join } from "node:path";
+import cors from "cors";
 require("dotenv").config();
-const cookieParser = require("cookie-parser");
+import cookieParser from "cookie-parser";
 const PORT = process.env.PORT;
 const FRONTEND_URL = process.env.FRONTEND_URL;
-const connectDB = require("./src/config/database");
-const { authRouter } = require("./src/routes/auth");
-const { userRouter } = require("./src/routes/user");
-const { messageRouter } = require("./src/routes/message");
-const { app, server } = require("./src/middlewares/socket");
+import connectDB from "./src/config/database";
+import { authRouter } from "./src/routes/auth";
+import { userRouter } from "./src/routes/user";
+import { messageRouter } from "./src/routes/message";
+import { app, server } from "./src/middlewares/socket";
 
-const __dirname = path.resolve();
+const __dirname = resolve();
 
 app.use(
   cors({
@@ -34,10 +34,10 @@ app.use("/", (req, res) => {
 });
 
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "../frontend/dist")));
+  app.use(express.static(join(__dirname, "../frontend/dist")));
 
   app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "../frontend", "dist", "index.html"));
+    res.sendFile(join(__dirname, "../frontend", "dist", "index.html"));
   });
 }
 
@@ -52,4 +52,4 @@ connectDB()
     console.log("error in db");
   });
 
-module.exports = app;
+export default app;
