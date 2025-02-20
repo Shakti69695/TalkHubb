@@ -23,16 +23,16 @@ const MInput = () => {
   };
 
   return (
-    <div className="fixed bottom-0  flex items-center" >
+    <div className="fixed bottom-0 left-0 right-0 flex items-center justify-center p-4">
       <input
         type="text"
         placeholder="Type here"
-        className="flex-1 input input-bordered p-2 m-2 rounded-lg text-sm sm:text-base"
+        className="flex-1 input input-bordered p-2 m-2 rounded-lg text-sm sm:text-base w-full max-w-xs md:max-w-lg lg:max-w-3xl"
         value={text}
-        style={{width:"850px"}}
         onChange={(e) => setText(e.target.value)}
         disabled={!sendUser}
       />
+
       <button
         className="p-2 m-2 rounded-lg bg-blue-500 hover:bg-blue-600 text-white disabled:bg-gray-400 flex items-center justify-center"
         onClick={handleSend}

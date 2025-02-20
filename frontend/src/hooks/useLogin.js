@@ -10,7 +10,7 @@ const useLogin = () => {
 
   const connectSocket = (userId) => {
     if (userId) {
-      const socket = io("http://localhost:8000", {
+      const socket = io(`${import.meta.env.VITE_APP_BASE_URL}`, {
         query: { userID: userId },
         transports: ["websocket", "polling", "flashsocket"],
       });
@@ -25,7 +25,7 @@ const useLogin = () => {
 
   const login = async (email, password) => {
     try {
-      const res = await fetch("http://localhost:8000/login", {
+      const res = await fetch(`${import.meta.env.VITE_APP_BASE_URL}/login`, {
         method: "POST",
         headers: { "Content-type": "application/json" },
         credentials: "include",

@@ -15,7 +15,7 @@ const Home = () => {
 
   const fetchUser = async () => {
     try {
-      const res = await fetch("http://localhost:8000/user", {
+      const res = await fetch(`${import.meta.env.VITE_APP_BASE_URL}/user`, {
         credentials: "include",
       });
       const data = await res.json();
@@ -33,13 +33,14 @@ const Home = () => {
   }, []);
 
   return (
-    <>
+    <div className="h-full">
       <Header />
-      <div className="flex gap-10 px-4 h-5/6">
+      <div className="flex gap-4 px-4 h-full lg:h-5/6">
+
         <Sidebar />
         {!selectUser ? <NoChatSelected /> : <MessageBox />}
       </div>
-    </>
+    </div>
   );
 };
 

@@ -1,18 +1,27 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Header from "../components/Header";
+import { addUser } from "../utils/userSlice";
 
 const EnhancedProfileCard = () => {
   const user = useSelector((store) => store.user);
+  const dispatch = useDispatch();
 
   const [name, setName] = useState("");
 
-  const handleNameChange = () => {
-    // if (name.trim() !== "") {
-    //   alert(`Name updated to: ${name}`);
-    // } else {
-    //   alert("Name cannot be empty!");
-    // }
+  const handleNameChange = async () => {
+    try {
+      const response = await fetch(`${import.meta.env.VITE_APP_BASE_URL}/update`, {
+        method: "PATCH",
+        headers: { "Content-type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({ name }),
+      });
+      const data = await response.json();
+      dispatch(addUser(data));
+    } catch (error) {
+      console.error(error.message);
+    }
   };
 
   return (

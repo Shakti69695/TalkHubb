@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { formatMessageTime } from "../utils/util.js";
 import { useSelector } from "react-redux";
 import MInput from "./MInput.jsx";
@@ -11,20 +11,25 @@ const MBody = () => {
 
   const [messageData, setMessageData] = useState([]);
 
-  const subscribeToMsg = () => {
-    if (!sendUser) return;
+  const subscribeToMsg = useCallback(() => {
+    if (!sendUser || !socket) return;
 
     socket.on("newMessage", (newMessage) => {
-      setMessageData((prevMes) => [...prevMes, newMessage]);
+      setMessageData((prevMes) => {
+        if (!prevMes.some((msg) => msg._id === newMessage._id)) {
+          return [...prevMes, newMessage];
+        }
+        return prevMes;
+      });
     });
-  };
+  }, [sendUser, socket]);
 
   useEffect(() => {
     const getMessage = async () => {
       if (!sendUser || !sendUser._id) return;
       try {
         const res = await fetch(
-          `http://localhost:8000/getMessage/${sendUser._id}`,
+          `${import.meta.env.VITE_APP_BASE_URL}/getMessage/${sendUser._id}`,
           {
             headers: {
               "Cache-Control": "no-cache",
@@ -39,17 +44,22 @@ const MBody = () => {
       }
     };
     getMessage();
-  }, [sendUser, messageTrigger, subscribeToMsg]);
+  }, [sendUser, messageTrigger]);
+
+  useEffect(() => {
+    subscribeToMsg();
+    return () => {
+      // Clean up socket listener on component unmount
+      socket.off("newMessage", subscribeToMsg);
+    };
+  }, [subscribeToMsg]);
 
   return (
     <div className="relative">
-      <div
-        className="w-full  overflow-scroll h-96 "
-        // style={{ height: "450px" }}
-      >
+      <div className="w-full overflow-scroll h-[36rem] sm:h-96">
         {messageData.map((mes) => (
           <div
-            key={mes._id}
+            key={`${mes._id}-${mes.senderId}`} // unique key
             className={`chat ${
               mes.senderId === auth._id ? "chat-end" : "chat-start"
             }`}

@@ -4,12 +4,15 @@ export const sendMessage = createAsyncThunk(
   "data/sendData",
   async ({ text, _id }, { rejectWithValue }) => {
     try {
-      const res = await fetch(`http://localhost:8000/sendMessage/${_id}`, {
-        method: "POST",
-        headers: { "Content-type": "application/json" },
-        credentials: "include",
-        body: JSON.stringify({ text }),
-      });
+      const res = await fetch(
+        `${import.meta.env.VITE_APP_BASE_URL}/sendMessage/${_id}`,
+        {
+          method: "POST",
+          headers: { "Content-type": "application/json" },
+          credentials: "include",
+          body: JSON.stringify({ text }),
+        }
+      );
       const data = await res.json();
       if (!res) {
         throw new Error("Failed to send data");

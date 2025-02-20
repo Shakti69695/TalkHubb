@@ -1,3 +1,30 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* In your global CSS */
+@media (min-width: 768px) {
+  .custom-max-width {
+    max-width: 800px;
+  }
+}
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+#root {
+  height: 100%;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.App .main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}

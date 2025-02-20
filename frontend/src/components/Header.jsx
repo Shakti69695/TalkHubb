@@ -21,7 +21,7 @@ const Header = () => {
 
   const handleLogout = async () => {
     try {
-      await fetch("http://localhost:8000/logout", {
+      await fetch(`${import.meta.env.VITE_APP_BASE_URL}/logout`, {
         method: "POST",
         headers: { "Content-type": "application/json" },
         credentials: "include",

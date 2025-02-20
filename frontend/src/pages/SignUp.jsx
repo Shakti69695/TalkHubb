@@ -10,14 +10,19 @@ const SignUp = () => {
 
   const handleSignup = async () => {
     try {
-      const res = await fetch("http://localhost:8000/signup", {
+      const res = await fetch(`${import.meta.env.VITE_APP_BASE_URL}/signup`, {
         method: "POST",
         headers: { "Content-type": "application/json" },
         credentials: "include",
         body: JSON.stringify({ name, email, password }),
       });
-      const data = await res.json();
-      return navigate("/login");
+
+      if (res.ok) {
+        alert("Signup successful! Please login.");       
+        navigate("/login");
+      } else {
+        alert("Signup failed");
+      }
     } catch (error) {
       console.error(error);
     }
