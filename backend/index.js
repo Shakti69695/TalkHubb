@@ -1,5 +1,5 @@
 const express = require("express");
-
+const path = require("node:path");
 const cors = require("cors");
 require("dotenv").config();
 const cookieParser = require("cookie-parser");
@@ -10,6 +10,8 @@ const { authRouter } = require("./src/routes/auth");
 const { userRouter } = require("./src/routes/user");
 const { messageRouter } = require("./src/routes/message");
 const { app, server } = require("./src/middlewares/socket");
+
+const __dirname = path.resolve();
 
 app.use(
   cors({
@@ -31,15 +33,23 @@ app.use("/", (req, res) => {
   res.send("Hello from Backend!!!!!!!!");
 });
 
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "../frontend/dist")));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "../frontend", "dist", "index.html"));
+  });
+}
+
 connectDB()
   .then(() => {
     console.log("dB connected");
-    // server.listen(PORT, () => {
-    //   console.log("server started");
-    // });
+    server.listen(PORT, () => {
+      console.log("server started");
+    });
   })
   .catch((err) => {
     console.log("error in db");
   });
 
-  module.exports= app;
+module.exports = app;
