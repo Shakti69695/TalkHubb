@@ -4,17 +4,16 @@ const cors = require("cors");
 require("dotenv").config();
 const cookieParser = require("cookie-parser");
 const PORT = process.env.PORT;
+const FRONTEND_URL = process.env.FRONTEND_URL;
 const connectDB = require("./src/config/database");
 const { authRouter } = require("./src/routes/auth");
 const { userRouter } = require("./src/routes/user");
 const { messageRouter } = require("./src/routes/message");
 const { app, server } = require("./src/middlewares/socket");
 
-
-
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: FRONTEND_URL,
     credentials: true,
   })
 );
