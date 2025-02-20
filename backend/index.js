@@ -6,10 +6,10 @@ import cookieParser from "cookie-parser";
 const PORT = process.env.PORT;
 const FRONTEND_URL = process.env.FRONTEND_URL;
 import connectDB from "./src/config/database.js";
-import { authRouter } from "./src/routes/auth";
-import { userRouter } from "./src/routes/user";
-import { messageRouter } from "./src/routes/message";
-import { app, server } from "./src/middlewares/socket";
+import { authRouter } from "./src/routes/auth.js";
+import { userRouter } from "./src/routes/user.js";
+import { messageRouter } from "./src/routes/message.js";
+import { app, server } from "./src/middlewares/socket.js";
 
 const __dirname = resolve();
 
