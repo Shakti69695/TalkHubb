@@ -10,7 +10,7 @@ const SignUp = () => {
 
   const handleSignup = async () => {
     try {
-      const res = await fetch(`${import.meta.env.VITE_APP_BASE_URL}/signup`, {
+      const res = await fetch("/signup", {
         method: "POST",
         headers: { "Content-type": "application/json" },
         credentials: "include",

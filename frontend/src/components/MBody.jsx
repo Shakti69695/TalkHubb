@@ -29,7 +29,7 @@ const MBody = () => {
       if (!sendUser || !sendUser._id) return;
       try {
         const res = await fetch(
-          `${import.meta.env.VITE_APP_BASE_URL}/getMessage/${sendUser._id}`,
+          `/getMessage/${sendUser._id}`,
           {
             headers: {
               "Cache-Control": "no-cache",

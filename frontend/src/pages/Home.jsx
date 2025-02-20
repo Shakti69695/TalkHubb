@@ -15,7 +15,7 @@ const Home = () => {
 
   const fetchUser = async () => {
     try {
-      const res = await fetch(`${import.meta.env.VITE_APP_BASE_URL}/user`, {
+      const res = await fetch("/user", {
         credentials: "include",
       });
       const data = await res.json();

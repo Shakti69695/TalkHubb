@@ -5,7 +5,7 @@ export const sendMessage = createAsyncThunk(
   async ({ text, _id }, { rejectWithValue }) => {
     try {
       const res = await fetch(
-        `${import.meta.env.VITE_APP_BASE_URL}/sendMessage/${_id}`,
+        "/sendMessage/${_id}",
         {
           method: "POST",
           headers: { "Content-type": "application/json" },

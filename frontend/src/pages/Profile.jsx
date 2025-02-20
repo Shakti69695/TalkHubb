@@ -11,7 +11,7 @@ const EnhancedProfileCard = () => {
 
   const handleNameChange = async () => {
     try {
-      const response = await fetch(`${import.meta.env.VITE_APP_BASE_URL}/update`, {
+      const response = await fetch("/update", {
         method: "PATCH",
         headers: { "Content-type": "application/json" },
         credentials: "include",

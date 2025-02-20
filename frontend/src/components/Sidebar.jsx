@@ -9,7 +9,7 @@ const Sidebar = () => {
 
   useEffect(() => {
     const user = async () => {
-      const res = await fetch(`${import.meta.env.VITE_APP_BASE_URL}/users`, {
+      const res = await fetch("/users", {
         credentials: "include",
       });
       const data = await res.json();
