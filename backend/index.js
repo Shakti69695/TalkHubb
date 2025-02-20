@@ -10,20 +10,11 @@ const { userRouter } = require("./src/routes/user");
 const { messageRouter } = require("./src/routes/message");
 const { app, server } = require("./src/middlewares/socket");
 
-const allowedOrigins = [process.env.FRONTEND_URL]; // List of allowed origins
-
-// CORS middleware configuration
 app.use(
   cors({
-    origin: function (origin, callback) {
-      if (allowedOrigins.indexOf(origin) !== -1) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
+    origin: "*", // Allow all origins
     allowedHeaders: ["Content-Type"],
-    credentials: true, // if you need cookies to be sent along with requests
+    credentials: true,
   })
 );
 
