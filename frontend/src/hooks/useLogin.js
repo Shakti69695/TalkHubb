@@ -25,7 +25,7 @@ const useLogin = () => {
 
   const login = async (email, password) => {
     try {
-      const res = await fetch("/login", {
+      const res = await fetch("https://talkhubb-back.onrender.com/login", {
         method: "POST",
         headers: { "Content-type": "application/json" },
         credentials: "include",

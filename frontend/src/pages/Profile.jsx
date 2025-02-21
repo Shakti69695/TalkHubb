@@ -11,7 +11,7 @@ const EnhancedProfileCard = () => {
 
   const handleNameChange = async () => {
     try {
-      const response = await fetch("/update", {
+      const response = await fetch("https://talkhubb-back.onrender.com/update", {
         method: "PATCH",
         headers: { "Content-type": "application/json" },
         credentials: "include",

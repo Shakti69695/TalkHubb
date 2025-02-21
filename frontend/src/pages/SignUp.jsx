@@ -10,7 +10,7 @@ const SignUp = () => {
 
   const handleSignup = async () => {
     try {
-      const res = await fetch("/signup", {
+      const res = await fetch("https://talkhubb-back.onrender.com/signup", {
         method: "POST",
         headers: { "Content-type": "application/json" },
         credentials: "include",

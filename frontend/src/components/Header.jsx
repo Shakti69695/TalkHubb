@@ -21,7 +21,7 @@ const Header = () => {
 
   const handleLogout = async () => {
     try {
-      await fetch("/logout", {
+      await fetch("https://talkhubb-back.onrender.com/logout", {
         method: "POST",
         headers: { "Content-type": "application/json" },
         credentials: "include",

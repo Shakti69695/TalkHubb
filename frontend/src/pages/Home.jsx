@@ -15,7 +15,7 @@ const Home = () => {
 
   const fetchUser = async () => {
     try {
-      const res = await fetch("/user", {
+      const res = await fetch("https://talkhubb-back.onrender.com/user", {
         credentials: "include",
       });
       const data = await res.json();

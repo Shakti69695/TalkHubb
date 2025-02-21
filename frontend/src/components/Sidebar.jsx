@@ -9,7 +9,7 @@ const Sidebar = () => {
 
   useEffect(() => {
     const user = async () => {
-      const res = await fetch("/users", {
+      const res = await fetch("https://talkhubb-back.onrender.com/users", {
         credentials: "include",
       });
       const data = await res.json();

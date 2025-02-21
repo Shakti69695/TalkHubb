@@ -5,7 +5,7 @@ export const sendMessage = createAsyncThunk(
   async ({ text, _id }, { rejectWithValue }) => {
     try {
       const res = await fetch(
-        "/sendMessage/${_id}",
+        `https://talkhubb-back.onrender.com/sendMessage/${_id}`,
         {
           method: "POST",
           headers: { "Content-type": "application/json" },
