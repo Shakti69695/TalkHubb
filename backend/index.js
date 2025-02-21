@@ -16,6 +16,7 @@ import { app, server } from "./src/middlewares/socket.js";
 
 app.use(
   cors({
+    origin: FRONTEND_URL,
     credentials: true, // Allow credentials (cookies) to be sent
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"], // Allowed methods
     allowedHeaders: [
@@ -33,7 +34,6 @@ app.use(
   })
 );
 
-app.options("*", cors());
 app.use(cookieParser());
 app.use(express.json());
 
