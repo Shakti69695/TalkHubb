@@ -12,7 +12,7 @@ import { userRouter } from "./src/routes/user.js";
 import { messageRouter } from "./src/routes/message.js";
 import { app, server } from "./src/middlewares/socket.js";
 
-const __dirname = resolve();
+// const __dirname = resolve();
 
 app.use(
   cors({
@@ -45,17 +45,16 @@ app.use("/ping", (req, res) => {
   res.send("pong");
 });
 
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(join(__dirname, "../frontend/dist")));
+// if (process.env.NODE_ENV === "production") {
+//   app.use(express.static(join(__dirname, "../frontend/dist")));
 
-  app.get("*", (req, res) => {
-    res.sendFile(join(__dirname, "../frontend", "dist", "index.html"));
-  });
-}
+//   app.get("*", (req, res) => {
+//     res.sendFile(join(__dirname, "../frontend", "dist", "index.html"));
+//   });
+// }
 
 connectDB()
   .then(() => {
-    console.log("dB connected");
     server.listen(PORT, () => {
       console.log(`Server started on port ${PORT}`);
     });
