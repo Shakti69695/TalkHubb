@@ -16,7 +16,6 @@ import { app, server } from "./src/middlewares/socket.js";
 
 app.use(
   cors({
-    origin: FRONTEND_URL, // Add the specific URL of your frontend
     credentials: true, // Allow credentials (cookies) to be sent
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"], // Allowed methods
     allowedHeaders: [
